@@ -13,7 +13,8 @@ html {
 }
 
 body {
-    background: #ddd;
+    /* background: #ddd; */
+    background: #555;
 }
 
 /* BASE SETTINGS END */
@@ -56,10 +57,55 @@ header {
     transition: all .2s ease;
 }
 
-.icon-position {
-    max-width: unset;
-    margin: auto;
+#color-input {
+    width: 100%;
+    height: 100px;
 }
+
+input[type=color] {
+    outline: 6px outset #000;
+    outline-offset: -7px;
+}
+
+.container {
+    width: 300px;
+    background: #aaa;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+
+.color {
+    position: absolute;
+    top: 1em;
+    left: 3em;
+}
+
+.grid {
+    position: absolute;
+    top: 8em;
+    left: 3em;
+}
+
+.fill {
+    position: absolute;
+    top: 15em;
+    left: 3em;
+}
+
+.opacity {
+    position: absolute;
+    bottom: 1em;
+    left: 3em;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
 
 /* HEADER SECTION END */
 

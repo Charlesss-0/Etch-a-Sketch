@@ -13,15 +13,47 @@
 <body>
     <header>
         <aside class="side-bar" id="side-bar-el">
-            <i class="fi fi-br-menu-burger icon" id="menu-burger"></i>
+            <i class="fi fi-br-palette icon" id="palette-icon">
+                <div class="container color hidden" id="color-container">
+                    <input type="color" id="color-input">
+                </div>
+            </i>
 
-            <i class="fi fi-br-palette icon position"></i>
+            <i class="fi fi-br-layout-fluid icon">
+                <div class="container grid hidden">
+                    <p>
+                        16x16
+                    </p>
+                    <p>
+                        32x32
+                    </p>
+                    <p>
+                        64x64
+                    </p>
+                    <input type="range" id="range-input">
+                </div>
+            </i>
 
-            <i class="fi fi-br-layout-fluid icon position"></i>
+            <i class="fi fi-br-fill icon">
+                <div class="container fill hidden" >
+                    <i class="fi fi-br-pen-circle"></i>
+                    <i class="fi fi-br-fill"></i>
+                </div>
+            </i>
 
-            <i class="fi fi-br-fill icon position"></i>
-
-            <i class="fi fi-br-opacity icon position"></i>
+            <i class="fi fi-br-opacity icon">
+                <div class="container opacity hidden">
+                    <p>
+                        Opacity
+                    </p>
+                    <p>
+                        50%
+                    </p>
+                    <p>
+                        100%
+                    </p>
+                </div>
+            </i>
         </aside>
     </header>
 
