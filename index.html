@@ -11,53 +11,85 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
 </head>
 <body>
-    <header>
+    <main id="main">
         <aside class="side-bar" id="side-bar-el">
-            <i class="fi fi-br-palette icon" id="palette-icon">
-                <div class="container color hidden" id="color-container">
-                    <input type="color" id="color-input">
-                </div>
-            </i>
+            <i class="fi fi-br-palette icon" id="palette-icon"></i>
 
-            <i class="fi fi-br-layout-fluid icon">
+            <i class="fi fi-br-grid icon"></i>
+
+            <i class="fi fi-br-fill icon"></i>
+
+            <i class="fi fi-br-opacity icon"></i>
+
+            <section class="options-section">
+                <div class="container color hidden" id="color-container">
+                    <label>
+                        Pick a color
+                    </label>
+                    <input type="color" id="color-input">
+                    <div class="warm-container">
+                        <span>
+                            Warm
+                        </span>
+                        <div class="warm-option"></div>
+                    </div>
+                    <div class="cool-container">
+                        <span>
+                            Cool
+                        </span>
+                        <div class="cool-option"></div>
+                    </div>
+                </div>
+
                 <div class="container grid hidden">
                     <p>
-                        16x16
+                        Grid
                     </p>
-                    <p>
-                        32x32
-                    </p>
-                    <p>
-                        64x64
-                    </p>
-                    <input type="range" id="range-input">
+                    <div class="grid-options">
+                        <span>
+                            16x16
+                        </span>
+                        <span>
+                            32x32
+                        </span>
+                        <span>
+                            64x64
+                        </span>
+                        <span> 
+                            128x128
+                        </span>
+                    </div>
+                    <input type="range" min="16" max="100" value="0" id="range-input">
                 </div>
-            </i>
 
-            <i class="fi fi-br-fill icon">
-                <div class="container fill hidden" >
-                    <i class="fi fi-br-pen-circle"></i>
-                    <i class="fi fi-br-fill"></i>
+                <div class="container hidden">
+                    <div class="fill">
+                        <span>
+                            Pick
+                            <i class="fi fi-br-pen-circle"></i>
+                        </span>
+                        <span>
+                            Fill
+                            <i class="fi fi-br-fill"></i>
+                        </span>
+                    </div>
                 </div>
-            </i>
 
-            <i class="fi fi-br-opacity icon">
                 <div class="container opacity hidden">
                     <p>
                         Opacity
                     </p>
-                    <p>
-                        50%
-                    </p>
-                    <p>
-                        100%
-                    </p>
+                    <div class="opacity-options">
+                        <span>
+                            50%
+                        </span>
+                        <span>
+                            100%
+                        </span>
+                    </div>
                 </div>
-            </i>
+            </section>
         </aside>
-    </header>
-
-    <main id="main">
         <section class="sketch-section">
             <div id="grid-container"></div>
         </section>
