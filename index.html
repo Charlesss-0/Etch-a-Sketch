@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./script.js" defer></script> 
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
@@ -15,18 +14,18 @@
         <aside class="side-bar" id="side-bar-el">
             <i class="fi fi-br-palette icon" id="palette-icon"></i>
 
-            <i class="fi fi-br-grid icon"></i>
+            <i class="fi fi-br-grid icon" id="grid-icon"></i>
 
-            <i class="fi fi-br-fill icon"></i>
+            <i class="fi fi-br-fill icon" id="fill-icon"></i>
 
-            <i class="fi fi-br-opacity icon"></i>
+            <i class="fi fi-br-opacity icon" id="opacity-icon"></i>
 
             <section class="options-section">
-                <div class="container color hidden" id="color-container">
+                <div class="container color" id="color-container">
                     <label>
                         Pick a color
                     </label>
-                    <input type="color" id="color-input">
+                    <input type="color" value="#aaa" id="color-input">
                     <div class="warm-container">
                         <span>
                             Warm
@@ -41,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="container grid hidden">
+                <div class="container grid">
                     <p>
                         Grid
                     </p>
@@ -62,20 +61,24 @@
                     <input type="range" min="16" max="100" value="0" id="range-input">
                 </div>
 
-                <div class="container hidden">
+                <div class="container fill-el">
                     <div class="fill">
                         <span>
                             Pick
-                            <i class="fi fi-br-pen-circle"></i>
+                            <i class="fi fi-br-bullseye-pointer" id="pick-icon"></i>
+                        </span>
+                        <span>
+                            Hover
+                            <i class="fi fi-br-cursor" id="hover-icon"></i>
                         </span>
                         <span>
                             Fill
-                            <i class="fi fi-br-fill"></i>
+                            <i class="fi fi-br-fill" id="fillGridContainer-icon"></i>
                         </span>
                     </div>
                 </div>
 
-                <div class="container opacity hidden">
+                <div class="container opacity">
                     <p>
                         Opacity
                     </p>
@@ -94,5 +97,6 @@
             <div id="grid-container"></div>
         </section>
     </main>
+    <script src="./script.js"></script> 
 </body>
-</html>
+</html
