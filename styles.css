@@ -65,7 +65,7 @@ body {
     background: #ccc;
     border-radius: 1rem;
     padding: 2rem;
-    display: grid;
+    /* display: grid; */
     gap: 5px;
     user-select: none;
 }
@@ -78,6 +78,17 @@ body {
     display: none;
 }
 
+.input-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-container label {
+    font-size: 1.3rem;
+}
+
 #color-input {
     width: 100%;
     height: 100px;
@@ -86,32 +97,24 @@ body {
 input[type=color] {
     outline: 6px outset #ddd;
     outline-offset: -6px;
+    border-radius: 1rem;
 }
 
-.color label {
-    text-align: center;
-    font-size: 1.5rem;
-}
-
-.warm-container,
-.cool-container {
+.color-scheme-container {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.warm-container span,
-.cool-container span {
-    width: 45px;
-    font-size: 1.5rem;
-    text-align: center;
+    justify-content: space-around;
+    margin-top: 5px;
 }
 
 .warm-option,
-.cool-option {
+.cool-option,
+.pastel-option {
     border: 1px solid;
     width: 30%;
     height: 50px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
 }
 
 .warm-option {
@@ -132,14 +135,17 @@ input[type=color] {
     margin-bottom: 15px;
 }
 
-.grid-options {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
+#apply-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 1rem;
+    font: 500 1.4rem Montserrat, sans-serif;
+    cursor: pointer;
+    transition: all .2s ease;
 }
 
-.grid-options span {
-    font-size: 1.3rem;
+#apply-btn:active {
+    transform: scale(.98);
 }
 
 .fill-el {
@@ -165,7 +171,7 @@ input[type=color] {
     justify-content: center;
     align-items: center;
     height: 60px;
-    font-size: 2.4rem;
+    font-size: 2rem;
     background: #ddd;
     border-radius: 100em;
 }
@@ -179,10 +185,6 @@ input[type=color] {
 #fillGridContainer-icon:active {
     border: solid;
 }
-
-/* .active:active {
-    border: solid;
-} */
 
 .opacity {
     gap: 15px;
@@ -206,10 +208,16 @@ input[type=color] {
     padding: 10px;
     background-color: #ddd;
     border-radius: 100em;
+    cursor: pointer;
 }
 
 .border {
     border: solid;
+}
+
+hr {
+    border: 1px solid #aaa;
+    margin: 10px auto;
 }
 
 /* SIDE BAR SECTION END  */
@@ -223,7 +231,7 @@ input[type=color] {
     align-items: center;
 }
 
-.sketch-section {
+#sketch-section {
     width: 45vw;
     aspect-ratio: 1 / 1;
     box-shadow: 4px 4px 8px #0005;
@@ -231,7 +239,7 @@ input[type=color] {
     padding: 1px;
 }
 
-.sketch-section-position {
+#sketch-section-position {
     margin-left: 40em;
 }
 
@@ -239,17 +247,21 @@ input[type=color] {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-columns: repeat(16, 1fr);
     gap: 1px;
+    transition: all .2s ease;
+}
+
+.sketch-margin {
+    margin-left: 400px;
 }
 
 .square {
     background-color: #fff;
+    /* border: 0.5px solid #000; */
 }
 
-.square-color {
-    background-color: #000;
+.squares {
+    border: 1px solid #000;
 }
 
 /* MAIN SECTION END */

@@ -22,43 +22,41 @@
 
             <section class="options-section">
                 <div class="container color" id="color-container">
-                    <label>
-                        Pick a color
-                    </label>
-                    <input type="color" value="#aaa" id="color-input">
-                    <div class="warm-container">
-                        <span>
-                            Warm
-                        </span>
-                        <div class="warm-option"></div>
+                    <div class="input-container">
+                        <label>
+                            Pick a color
+                        </label>
+                        <input type="color" value="#aaa" id="color-input">
                     </div>
-                    <div class="cool-container">
-                        <span>
-                            Cool
-                        </span>
-                        <div class="cool-option"></div>
+                    <hr>
+                    <div class="color-scheme-container">
+                        <div class="warm-option">
+                            <span>
+                                Warm
+                            </span>
+                        </div>
+                        <div class="cool-option">
+                            <span>
+                                Cool
+                            </span>
+                        </div>
+                        <div class="pastel-option">
+                            <span> 
+                                Pastel
+                            </span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="container grid">
                     <p>
-                        Grid
+                        Grid Size
                     </p>
-                    <div class="grid-options">
-                        <span>
-                            16x16
-                        </span>
-                        <span>
-                            32x32
-                        </span>
-                        <span>
-                            64x64
-                        </span>
-                        <span> 
-                            128x128
-                        </span>
-                    </div>
-                    <input type="range" min="16" max="100" value="0" id="range-input">
+                    <input type="range" min="16" max="64" value="16" id="range-input">
+                    <p id="range-value">16</p>
+                    <button id="apply-btn">
+                        Apply
+                    </button>
                 </div>
 
                 <div class="container fill-el">
@@ -83,17 +81,17 @@
                         Opacity
                     </p>
                     <div class="opacity-options">
-                        <span>
+                        <span id="opacity-50">
                             50%
                         </span>
-                        <span>
+                        <span id="opacity-100">
                             100%
                         </span>
                     </div>
                 </div>
             </section>
         </aside>
-        <section class="sketch-section">
+        <section id="sketch-section">
             <div id="grid-container"></div>
         </section>
     </main>
