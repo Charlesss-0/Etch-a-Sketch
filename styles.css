@@ -86,7 +86,7 @@ body {
 }
 
 .input-container label {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 
 #color-input {
@@ -125,14 +125,23 @@ input[type=color] {
     background: #2a6f97;
 }
 
-.grid {
-    display: none;
+.pastel-option {
+    background: #fde2e4;
 }
 
-.grid p {
-    font-size: 1.5rem;
+.grid-container {
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    margin-bottom: 15px;
+    gap: 5px;
+}
+
+.grid-container p {
+    font-size: 1.5rem;
+}
+
+.grid {
+    display: none;
 }
 
 #apply-btn {
@@ -187,13 +196,13 @@ input[type=color] {
 }
 
 .opacity {
-    gap: 15px;
     display: none;
 }
 
-.opacity p {
-    text-align: center;
+.opacity-para {
     font-size: 1.5rem;
+    text-align: center;
+    padding: 5px;
 }
 
 .opacity-options {
@@ -256,7 +265,7 @@ hr {
 
 .square {
     background-color: #fff;
-    border: 0.5px solid #ddd;
+    border: 1px solid #ddd;
 }
 
 .squares {

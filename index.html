@@ -49,20 +49,22 @@
                 </div>
 
                 <div class="container grid">
-                    <p>
-                        Grid Size
-                    </p>
-                    <input type="range" min="16" max="64" value="16" id="range-input">
-                    <p id="range-value">16</p>
-                    <button id="apply-btn">
-                        Apply
-                    </button>
+                    <div class="grid-container">
+                        <p>
+                            Grid Size
+                        </p>
+                        <input type="range" min="16" max="100" value="16" id="range-input">
+                        <p id="range-value">16</p>
+                        <button id="apply-btn">
+                            Apply
+                        </button>
+                    </div>
                 </div>
 
                 <div class="container fill-el">
                     <div class="fill">
                         <span>
-                            Pick
+                            Select
                             <i class="fi fi-br-bullseye-pointer" id="pick-icon"></i>
                         </span>
                         <span>
@@ -77,9 +79,11 @@
                 </div>
 
                 <div class="container opacity">
-                    <p>
-                        Opacity
-                    </p>
+                    <div>
+                        <p class="opacity-para">
+                            Opacity
+                        </p>
+                    </div>
                     <div class="opacity-options">
                         <span id="opacity-50">
                             50%
@@ -95,6 +99,6 @@
             <div id="grid-container"></div>
         </section>
     </main>
-    <script src="./script.js"></script> 
+    <script type="text/javascript" src="./script.js"></script> 
 </body>
 </html

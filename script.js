@@ -4,12 +4,7 @@ const rangeInputValue = document.querySelector('#range-input')
 const rangeValueNum = document.querySelector('#range-value')
 const applyBtnEl = document.querySelector('#apply-btn')
 
-rangeInputValue.addEventListener('input', () => {
-    const value = rangeInputValue.value
-    rangeValueNum.textContent = value
-})
-
-function getInputValue(value) {
+function getInputValueForGrid(value) {
     gridContainer.innerHTML = ''
     for (let i = 0; i < value; i++) {
         for (let j = 0; j < value; j++) {
@@ -20,18 +15,19 @@ function getInputValue(value) {
             gridContainer.appendChild(squares)
         }
     }
-    
-    addClickListeners()
-    addHoverListeners()
-    changeAllSquareColors()
 }
+
+rangeInputValue.addEventListener('input', () => {
+    const value = rangeInputValue.value
+    rangeValueNum.textContent = value
+})
 
 applyBtnEl.addEventListener('click', () => {
     const value = rangeInputValue.value
-    getInputValue(value)
+    getInputValueForGrid(value)
 })
 
-// Icon selectors
+// Click icon actions
 const paletteIconEl = document.querySelector('#palette-icon')
 const gridIconEl = document.querySelector('#grid-icon')
 const fillIconEl = document.querySelector('#fill-icon')
@@ -58,36 +54,95 @@ opacityIconEl.addEventListener('click', () => {
     opacityEl.classList.toggle('opacity')
 })
 
-// Icon options
+// Icon color options
 const pickIconEl = document.querySelector('#pick-icon')
 const hoverIconEl = document.querySelector('#hover-icon')
 const fillGridContainer = document.querySelector('#fillGridContainer-icon')
 const colorInputEl = document.querySelector('#color-input')
 
 const warmEl = document.querySelector('.warm-option')
-// const coolEl = document.querySelector('.cool-option')
-// const pastelEl = document.querySelector('.pastel-option')
+const coolEl = document.querySelector('.cool-option')
+const pastelEl = document.querySelector('.pastel-option')
 
-const warmColorsArr = [
-    '#797d62',
-    '#9b9b7a',
-    '#baa587',
-    '#d9ae94',
-    '#f1dca7',
-    '#ffcb69',
-    '#e8ac65',
-    '#d08c60',
-    '#b58463',
-    '#997b66'
-]
+function getInputColor() {
+    const value = colorInputEl.value
+    return value
+}
 
-function getRandomColor(colorsArr) {
-    const randomIndex = Math.floor( Math.random() * colorsArr.length )
-    return colorsArr[randomIndex]
+function getWarmColor() {
+    const warmColorsArr = [
+        '#797d62',
+        '#9b9b7a',
+        '#baa587',
+        '#d9ae94',
+        '#f1dca7',
+        '#ffcb69',
+        '#e8ac65',
+        '#d08c60',
+        '#b58463',
+        '#997b66'
+    ]
+
+    const randomIndex = Math.floor( Math.random() * warmColorsArr.length)
+    return warmColorsArr[randomIndex]
+}
+
+function getCoolColor() {
+    const coolColorArr = [
+        '#012a4a',
+        '#013a63',
+        '#01497c',
+        '#014f86',
+        '#2a6f97',
+        '#2c7da0',
+        '#468faf',
+        '#61a5c2',
+        '#89c2d9',
+        '#a9d6e5'
+    ]
+
+    const randomIndex = Math.floor( Math.random() * coolColorArr.length )
+    return coolColorArr[randomIndex]
+}
+
+function getPastelColor() {
+    const pastelColorArr = [
+        '#eddcd2',
+        '#fff1e6',
+        '#fde2e4',
+        '#fad2e1',
+        '#c5dedd',
+        '#dbe7e4',
+        '#f0efeb',
+        '#d6e2e9',
+        '#bcd4e6',
+        '#99c1de'
+    ]
+
+    const randomIndex = Math.floor( Math.random() * pastelColorArr.length )
+    return pastelColorArr[randomIndex]
+}
+
+function getSquareColor(colorElement) {
+    let colorChoice
+    switch (colorElement) {
+        case warmEl:
+            colorChoice = getWarmColor()
+            break
+        case coolEl:
+            colorChoice = getCoolColor()
+            break
+        case pastelEl:
+            colorChoice = getPastelColor()
+            break
+        default:
+            colorChoice = getInputColor()
+    }
+    return colorChoice
 }
 
 function changeSquareColor(element) {
-   element.style.backgroundColor = getRandomColor(warmColorsArr)
+   element.style.backgroundColor = getSquareColor()
 }
 
 function addClickListeners() {
@@ -127,14 +182,6 @@ hoverIconEl.addEventListener('click', () => {
 
 fillGridContainer.addEventListener('click', () => {
     changeAllSquareColors()
-})
-
-warmEl.addEventListener('click', () => {
-    changeSquareColor(warmEl)
-})
-
-colorInputEl.addEventListener('change', () => {
-    changeSquareColor(colorInputEl)
 })
 
 // Opacity options
