@@ -4,6 +4,19 @@ const rangeInputValue = document.querySelector('#range-input')
 const rangeValueNum = document.querySelector('#range-value')
 const applyBtnEl = document.querySelector('#apply-btn')
 
+function defaultGridValue() {
+    for (let i = 0; i < 16; i++) {
+        for (let j = 0; j < 16; j++) {
+            let squares = document.createElement('div')
+            squares.classList.add('square')
+            gridContainer.style.gridTemplateColumns = `repeat(16, 1fr)`
+            gridContainer.style.gridTemplateRows = `repeat(16, 1fr)`
+            gridContainer.appendChild(squares)
+        }
+    }
+}
+defaultGridValue()
+
 function getInputValueForGrid(value) {
     gridContainer.innerHTML = ''
     for (let i = 0; i < value; i++) {
@@ -17,6 +30,14 @@ function getInputValueForGrid(value) {
     }
 }
 
+function removeClassList() {
+    warmEl.classList.remove('border')
+    coolEl.classList.remove('border')
+    pastelEl.classList.remove('border')
+    pickIconEl.classList.remove('border')
+    hoverIconEl.classList.remove('border')
+}
+
 rangeInputValue.addEventListener('input', () => {
     const value = rangeInputValue.value
     rangeValueNum.textContent = value
@@ -25,6 +46,7 @@ rangeInputValue.addEventListener('input', () => {
 applyBtnEl.addEventListener('click', () => {
     const value = rangeInputValue.value
     getInputValueForGrid(value)
+    removeClassList()
 })
 
 // Click icon actions
@@ -57,7 +79,8 @@ opacityIconEl.addEventListener('click', () => {
 // Icon color options
 const pickIconEl = document.querySelector('#pick-icon')
 const hoverIconEl = document.querySelector('#hover-icon')
-const fillGridContainer = document.querySelector('#fillGridContainer-icon')
+const fillGridIcon = document.querySelector('#fill-grid-icon')
+
 const colorInputEl = document.querySelector('#color-input')
 
 const warmEl = document.querySelector('.warm-option')
@@ -123,66 +146,71 @@ function getPastelColor() {
     return pastelColorArr[randomIndex]
 }
 
-function getSquareColor(colorElement) {
-    let colorChoice
-    switch (colorElement) {
-        case warmEl:
-            colorChoice = getWarmColor()
-            break
-        case coolEl:
-            colorChoice = getCoolColor()
-            break
-        case pastelEl:
-            colorChoice = getPastelColor()
-            break
-        default:
-            colorChoice = getInputColor()
-    }
-    return colorChoice
-}
-
-function changeSquareColor(element) {
-   element.style.backgroundColor = getSquareColor()
-}
-
-function addClickListeners() {
+pickIconEl.addEventListener('click', () => {
     const squareEl = document.querySelectorAll('.square')
     squareEl.forEach((element) => {
         element.addEventListener('click', () => {
-            changeSquareColor(element)
+            element.style.backgroundColor = getInputColor()
         })
     })
-} // Changes the square color when clicked
-
-function addHoverListeners() {
-    const squareEl = document.querySelectorAll('.square')
-    squareEl.forEach((element) => {
-        element.addEventListener('mouseover', () => {
-            changeSquareColor(element)
-        })
-    })
-} // Changes the square color when hovered
-
-function changeAllSquareColors() {
-    const squareEl = document.querySelectorAll('.square')
-    squareEl.forEach((element) => {
-        changeSquareColor(element)
-    })
-} // Changes all the square colors when clicked
-
-pickIconEl.addEventListener('click', () => {
-    addClickListeners()
-    pickIconEl.classList.toggle('border')
+    pickIconEl.classList.add('border')
+    hoverIconEl.classList.remove('border')
 })
 
 hoverIconEl.addEventListener('click', () => {
-    addHoverListeners()
-    hoverIconEl.classList.toggle('border')
+    const squareEl = document.querySelectorAll('.square')
+    squareEl.forEach((element) => {
+        element.addEventListener('mouseover', () => {
+            element.style.backgroundColor = getInputColor()
+        })
+    })
+    hoverIconEl.classList.add('border')
+    pickIconEl.classList.remove('border')
 })
 
-fillGridContainer.addEventListener('click', () => {
-    changeAllSquareColors()
+fillGridIcon.addEventListener('click', () => {
+    const squareEl = document.querySelectorAll('.square')
+    squareEl.forEach((element) => {
+        element.style.backgroundColor = getInputColor()
+    })
 })
+
+warmEl.addEventListener('click', () => {
+    const squareEl = document.querySelectorAll('.square')
+    squareEl.forEach((element) => {
+        element.addEventListener('mouseenter', () => {
+            element.style.backgroundColor = getWarmColor()
+        })
+    })
+    warmEl.classList.add('border')
+    coolEl.classList.remove('border')
+    pastelEl.classList.remove('border')
+})
+
+coolEl.addEventListener('click', () => {
+    const squareEl = document.querySelectorAll('.square')
+    squareEl.forEach((element) => {
+        element.addEventListener('mouseenter', () => {
+            element.style.backgroundColor = getCoolColor()
+        })
+    })
+    coolEl.classList.add('border')
+    warmEl.classList.remove('border')
+    pastelEl.classList.remove('border')
+})
+
+pastelEl.addEventListener('click', () => {
+    const squareEl = document.querySelectorAll('.square')
+    squareEl.forEach((element) => {
+        element.addEventListener('mouseenter', () => {
+            element.style.backgroundColor = getPastelColor()
+        })
+    })
+    pastelEl.classList.add('border')
+    warmEl.classList.remove('border')
+    coolEl.classList.remove('border')
+})
+
 
 // Opacity options
 const opacityOneEl = document.querySelector('#opacity-50')
@@ -197,8 +225,48 @@ function getOpacityValue(opacityVal) {
 
 opacityOneEl.addEventListener('click', () => {
     getOpacityValue('50%')
+    opacityOneEl.classList.add('border')
+    opacityTwoEl.classList.remove('border')
 })
 
 opacityTwoEl.addEventListener('click', () => {
     getOpacityValue('100%')
+    opacityTwoEl.classList.add('border')
+    opacityOneEl.classList.remove('border')
 })
+
+const backArrowEl = document.querySelector('#back-arrow')
+const forthArrowEl = document.querySelector('#forth-arrow')
+const clearEl = document.querySelector('#clear')
+
+const colorHistory = []
+let currentState = 0
+
+function saveColorState() {
+    const squareEl = document.querySelectorAll('.square')
+    const colors = Array.from(squareEl).map((element) => element.style.backgroundColor)
+    colorHistory.push(colors)
+    currentState = colorHistory.length -1  
+}
+
+function undoColorState() {
+    if (currentState > 0) {
+        currentState--
+    }
+}
+
+function redoColorState() {
+    if (currentState < colorHistory.length - 1) {
+        currentState++
+    }
+}
+
+clearEl.addEventListener('click', () => {
+    const squareEl = document.querySelectorAll('.square')
+    squareEl.forEach((element) => {
+        element.style.backgroundColor = "#fff"
+    })
+})
+
+backArrowEl.addEventListener('click', undoColorState)
+forthArrowEl.addEventListener('click', redoColorState)

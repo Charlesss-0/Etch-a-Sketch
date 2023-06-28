@@ -98,6 +98,7 @@ input[type=color] {
     outline: 6px outset #ddd;
     outline-offset: -6px;
     border-radius: 1rem;
+    cursor: pointer;
 }
 
 .color-scheme-container {
@@ -109,12 +110,20 @@ input[type=color] {
 .warm-option,
 .cool-option,
 .pastel-option {
-    border: 1px solid;
+    border: 2px outset;
+    border-radius: 1rem;
     width: 30%;
     height: 50px;
     display: grid;
     place-content: center;
     cursor: pointer;
+    transition: transform .2s ease;
+}
+
+.warm-option:active,
+.cool-option:active,
+.pastel-option:active {
+    transform: scale(.98);
 }
 
 .warm-option {
@@ -129,15 +138,20 @@ input[type=color] {
     background: #fde2e4;
 }
 
-.grid-container {
+.grid-size {
     display: flex;
     flex-direction: column;
     text-align: center;
     gap: 5px;
 }
 
-.grid-container p {
+.grid-size p {
     font-size: 1.5rem;
+}
+
+#range-input {
+    outline: none;
+    cursor: pointer;
 }
 
 .grid {
@@ -187,11 +201,18 @@ input[type=color] {
 
 #pick-icon,
 #hover-icon,
-#fillGridContainer-icon {
+#fill-grid-icon {
     cursor: pointer;
+    transition: transform .2s ease;
 }
 
-#fillGridContainer-icon:active {
+#pick-icon:active,
+#hover-icon:active,
+#fill-grid-icon:active {
+    transform: scale(.98);
+}
+
+#fill-grid-icon:active {
     border: solid;
 }
 
@@ -210,14 +231,16 @@ input[type=color] {
     justify-content: space-around;
 }
 
-.opacity-options span {
+#opacity-50,
+#opacity-100 {
     width: 60px;
-    text-align: center;
     font-size: 1.5rem;
     padding: 10px;
-    background-color: #ddd;
-    border-radius: 100em;
+    background: #ddd;
+    border-radius: 10rem;
     cursor: pointer;
+    display: grid;
+    place-content: center;
 }
 
 .border {
@@ -270,6 +293,46 @@ hr {
 
 .squares {
     border: 1px solid #000;
+}
+
+.return-container {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 20px;
+    padding: 2.5rem;
+    position: absolute;
+    right: 5%;
+}
+
+.return-container i,
+.return-container p {
+    background: #ddd;
+    padding: 1.5rem;
+    border-radius: 10rem;
+    transition: all .2s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.return-container i {
+    font-size: 2rem;
+}
+
+.return-container p {
+    font-size: 1.5rem;
+}
+
+.return-container i:active,
+.return-container p:active {
+    transform: scale(.95);
+}
+
+.return-container i:hover,
+.return-container p:hover {
+    background: #ccc;
 }
 
 /* MAIN SECTION END */
