@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="./styles.css">
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
 </head>
 <body>
@@ -26,7 +24,7 @@
                         <label>
                             Pick a color
                         </label>
-                        <input type="color" id="color-input">
+                        <input type="color" value="#aaa" id="color-input">
                     </div>
                     <hr>
                     <div class="color-scheme-container">
@@ -62,18 +60,25 @@
                 </div>
 
                 <div class="container fill-el">
-                    <div class="fill">
+                    <div class="fill-type">
                         <span>
                             Select
-                            <i class="fi fi-br-bullseye-pointer" id="pick-icon"></i>
+                            <i class="fi fi-br-bullseye-pointer span-setting" id="pick-icon"></i>
                         </span>
                         <span>
                             Hover
-                            <i class="fi fi-br-cursor" id="hover-icon"></i>
+                            <i class="fi fi-br-cursor span-setting" id="hover-icon"></i>
                         </span>
                         <span>
                             Fill
-                            <i class="fi fi-br-fill" id="fill-grid-icon"></i>
+                            <i class="fi fi-br-fill span-setting" id="fill-grid-icon"></i>
+                        </span>
+                        <span>
+                            <i class="fi fi-br-border-none span-setting" id="border-icon"></i>
+                        </span>
+                        <span></span>
+                        <span class="span-setting" id="clear">
+                            Clear
                         </span>
                     </div>
                 </div>
@@ -95,14 +100,6 @@
                 </div>
             </section>
         </aside>
-        
-        <div class="return-container">
-            <i class="fi fi-br-undo-alt" id="back-arrow"></i>
-            <p id="clear">
-                Clear
-            </p>
-            <i class="fi fi-br-redo-alt" id="forth-arrow"></i>
-        </div>
 
         <section id="sketch-section">
             <div id="grid-container"></div>
