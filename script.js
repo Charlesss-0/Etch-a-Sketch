@@ -29,7 +29,7 @@ function removeClassList() {
 
 rangeInputValue.addEventListener('input', () => {
     const value = rangeInputValue.value
-    rangeValueNum.textContent = value
+    rangeValueNum.innerHTML = value
 })
 
 applyBtnEl.addEventListener('click', () => {
@@ -115,14 +115,46 @@ function removeBorderClass() {
     pastelEl.classList.remove('border')
 }
 
+// function setPickIconEventListener() {
+//     const squareEl = document.querySelectorAll('.square')
+//     gridContainer.addEventListener('mousedown', () => {
+//         squareEl.forEach((e) => {
+//             e.addEventListener('mouseover', () => {
+//                 e.style.backgroundColor = getInputColor()
+//             })
+//         })
+//     })
+
+//     pickIconEl.classList.add('border')
+//     hoverIconEl.classList.remove('border')
+//     removeBorderClass()
+// }
+
 function setPickIconEventListener() {
-    
     const squareEl = document.querySelectorAll('.square')
-    squareEl.forEach((element) => {
-        element.addEventListener('mousedown', () => {
-            element.style.backgroundColor = getInputColor()
+    squareEl.forEach((el) => {
+        el.addEventListener('mousedown', () => {
+            el.style.backgroundColor = getInputColor()
         })
     })
+    const handleMouseOver = (event) => {
+        event.target.style.backgroundColor = getInputColor()
+    }
+
+    const handleMouseUp = () => {
+        squareEl.forEach((el) => {
+            el.removeEventListener('mouseover', handleMouseOver)
+        })
+    }
+
+    gridContainer.addEventListener('mousedown', () => {
+        squareEl.forEach((el) => {
+            el.addEventListener('mouseover', handleMouseOver)
+        })
+    })
+
+    gridContainer.addEventListener('mouseup', handleMouseUp)
+
     pickIconEl.classList.add('border')
     hoverIconEl.classList.remove('border')
     removeBorderClass()
@@ -161,6 +193,7 @@ function clearBtn() {
         element.style.background = 'none'
     })
 }
+
 
 pickIconEl.addEventListener('click', setPickIconEventListener)
 hoverIconEl.addEventListener('click', setHoverIconEventListener)
