@@ -200,18 +200,17 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .fill-type {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
 }
 
-.fill-type span {
+.fill-type span,
+.fill-type div {
     width: 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     text-align: center;
     font-size: 1.5rem;
+    margin: 0 auto;
 }
 
 .span-setting {
@@ -221,15 +220,14 @@ input[type="range"]::-webkit-slider-thumb {
     height: 60px;
     font-size: 2rem;
     background: #ddd;
-    border-radius: 100em;
-    margin-bottom: 1rem;
+    border-radius: 10em;
 }
 
 #pick-icon,
 #hover-icon,
 #fill-grid-icon,
 #border-icon,
-#clear {
+#erase {
     cursor: pointer;
     transition: transform .2s ease;
 }
@@ -238,12 +236,12 @@ input[type="range"]::-webkit-slider-thumb {
 #hover-icon:active,
 #fill-grid-icon:active,
 #border-icon:active,
-#clear:active {
+#erase:active {
     transform: scale(.98);
 }
 
 #fill-grid-icon:active,
-#clear:active {
+#border-icon:active {
     border: solid #999;
 }
 
@@ -327,3 +325,19 @@ hr {
 }
 
 /* MAIN SECTION END */
+
+/* FOOTER SECTION START */
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.5rem;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* FOOTER SECTION END */

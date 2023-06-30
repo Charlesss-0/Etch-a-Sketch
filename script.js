@@ -18,13 +18,12 @@ function getInputValueForGrid(value) {
 }
 getInputValueForGrid(16)
 
-function removeClassList() {
+function removeBorderClass() {
     warmEl.classList.remove('border')
     coolEl.classList.remove('border')
     pastelEl.classList.remove('border')
     pickIconEl.classList.remove('border')
-    hoverIconEl.classList.remove('border')
-    borderIconEl.classList.remove('border')
+    eraseEl.classList.remove('border')
 }
 
 rangeInputValue.addEventListener('input', () => {
@@ -35,10 +34,10 @@ rangeInputValue.addEventListener('input', () => {
 applyBtnEl.addEventListener('click', () => {
     const value = rangeInputValue.value
     getInputValueForGrid(value)
-    removeClassList()
+    removeBorderClass()
 })
 
-// Click icon actions
+// Icons click action
 const paletteIconEl = document.querySelector('#palette-icon')
 const gridIconEl = document.querySelector('#grid-icon')
 const fillIconEl = document.querySelector('#fill-icon')
@@ -67,10 +66,9 @@ opacityIconEl.addEventListener('click', () => {
 
 // Icon color options
 const pickIconEl = document.querySelector('#pick-icon')
-const hoverIconEl = document.querySelector('#hover-icon')
 const fillGridIcon = document.querySelector('#fill-grid-icon')
 const borderIconEl = document.querySelector('#border-icon')
-const clearEl = document.querySelector('#clear')
+const eraseEl = document.querySelector('#erase')
 
 const colorInputEl = document.querySelector('#color-input')
 const warmEl = document.querySelector('.warm-option')
@@ -115,60 +113,27 @@ function removeBorderClass() {
     pastelEl.classList.remove('border')
 }
 
-// function setPickIconEventListener() {
-//     const squareEl = document.querySelectorAll('.square')
-//     gridContainer.addEventListener('mousedown', () => {
-//         squareEl.forEach((e) => {
-//             e.addEventListener('mouseover', () => {
-//                 e.style.backgroundColor = getInputColor()
-//             })
-//         })
-//     })
-
-//     pickIconEl.classList.add('border')
-//     hoverIconEl.classList.remove('border')
-//     removeBorderClass()
-// }
-
+let isMouseDown = false
 function setPickIconEventListener() {
     const squareEl = document.querySelectorAll('.square')
-    squareEl.forEach((el) => {
-        el.addEventListener('mousedown', () => {
-            el.style.backgroundColor = getInputColor()
+
+    squareEl.forEach((e) => {
+        e.addEventListener('mousedown', () => {
+            isMouseDown = true
+            e.style.backgroundColor = getInputColor()
+        })
+        e.addEventListener('mouseover', () => {
+            if (isMouseDown) {
+                e.style.backgroundColor = getInputColor()
+            }
         })
     })
-    const handleMouseOver = (event) => {
-        event.target.style.backgroundColor = getInputColor()
-    }
-
-    const handleMouseUp = () => {
-        squareEl.forEach((el) => {
-            el.removeEventListener('mouseover', handleMouseOver)
-        })
-    }
-
-    gridContainer.addEventListener('mousedown', () => {
-        squareEl.forEach((el) => {
-            el.addEventListener('mouseover', handleMouseOver)
-        })
+    window.addEventListener('mouseup', () => {
+        isMouseDown = false
     })
-
-    gridContainer.addEventListener('mouseup', handleMouseUp)
 
     pickIconEl.classList.add('border')
-    hoverIconEl.classList.remove('border')
-    removeBorderClass()
-}
-
-function setHoverIconEventListener() {
-    const squareEl = document.querySelectorAll('.square')
-    squareEl.forEach((element) => {
-        element.addEventListener('mouseenter', () => {
-            element.style.backgroundColor = getInputColor()
-        })
-    })
-    hoverIconEl.classList.add('border')
-    pickIconEl.classList.remove('border')
+    eraseEl.classList.remove('border')
     removeBorderClass()
 }
 
@@ -184,57 +149,104 @@ function setBorderIconEventListener() {
     squareEl.forEach((element) => {
         element.classList.toggle('no-border')
     })
-    borderIconEl.classList.toggle('border')
 }
 
-function clearBtn() {
+function eraseBtn() {
     const squareEl = document.querySelectorAll('.square')
-    squareEl.forEach((element) => {
-        element.style.background = 'none'
+
+    squareEl.forEach((e) => {
+        e.addEventListener('mousedown', () => {
+            isMouseDown = true
+            e.style.background = ''
+        })
+        e.addEventListener('mouseover', () => {
+            if (isMouseDown) {
+                e.style.background = '' 
+            }
+        })
     })
+    window.addEventListener('mouseup', () => {
+        isMouseDown = false
+    })
+
+    eraseEl.classList.add('border')
+    pickIconEl.classList.remove('border')
+    removeBorderClass()
 }
 
 
 pickIconEl.addEventListener('click', setPickIconEventListener)
-hoverIconEl.addEventListener('click', setHoverIconEventListener)
 fillGridIcon.addEventListener('click', setFillGridIconEventListener)
 borderIconEl.addEventListener('click', setBorderIconEventListener)
-clearEl.addEventListener('click', clearBtn)
+eraseEl.addEventListener('click', eraseBtn)
 
 function setWarmEventListener() {
     const squareEl = document.querySelectorAll('.square')
-    squareEl.forEach((element) => {
-        element.addEventListener('mouseenter', () => {
-            element.style.backgroundColor = getWarmColor()
+
+    squareEl.forEach((e) => {
+        e.addEventListener('mousedown', () => {
+            isMouseDown = true
+            e.style.backgroundColor = getWarmColor()
+        })
+        e.addEventListener('mouseover', () => {
+            if (isMouseDown) {
+                e.style.backgroundColor = getWarmColor()
+            }
         })
     })
+    window.addEventListener('mouseup', () => {
+        isMouseDown = false
+    })
+
     warmEl.classList.add('border')
     coolEl.classList.remove('border')
     pastelEl.classList.remove('border')
+    pickIconEl.classList.remove('border')
 }
 
 function setCoolEventListener() {
     const squareEl = document.querySelectorAll('.square')
-    squareEl.forEach((element) => {
-        element.addEventListener('mouseenter', () => {
-            element.style.backgroundColor = getCoolColor()
+    
+    squareEl.forEach((e) => {
+        e.addEventListener('mousedown', () => {
+            isMouseDown = true
+            e.style.backgroundColor = getCoolColor()
+        })
+        e.addEventListener('mouseover', () => {
+            if (isMouseDown) {
+                e.style.backgroundColor = getCoolColor()
+            }
         })
     })
+    window.addEventListener('mouseup', () => {
+        isMouseDown = false
+    })
+
     coolEl.classList.add('border')
     warmEl.classList.remove('border')
     pastelEl.classList.remove('border')
+    pickIconEl.classList.remove('border')
 }
 
 function setPastelEventListener() {
     const squareEl = document.querySelectorAll('.square')
-    squareEl.forEach((element) => {
-        element.addEventListener('mouseenter', () => {
-            element.style.backgroundColor = getPastelColor()
+    
+    squareEl.forEach((e) => {
+        e.addEventListener('mousedown', () => {
+            isMouseDown = true
+            e.style.backgroundColor = getPastelColor()
+        })
+        e.addEventListener('mouseover', () => {
+            if (isMouseDown) {
+                e.style.backgroundColor = getPastelColor()
+            }
         })
     })
+
     pastelEl.classList.add('border')
     warmEl.classList.remove('border')
     coolEl.classList.remove('border')
+    pickIconEl.classList.remove('border')
 }
 
 warmEl.addEventListener('click', setWarmEventListener)
