@@ -137,6 +137,8 @@ function setPickIconEventListener() {
     removeBorderClass()
 }
 
+setPickIconEventListener()
+
 function setFillGridIconEventListener() {
     const squareEl = document.querySelectorAll('.square')
     squareEl.forEach((element) => {
